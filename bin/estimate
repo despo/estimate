@@ -3,17 +3,17 @@ require 'optparse'
 
 options = {}
 parsed_options = OptionParser.new do |opts|
-  opts.banner = "Usage: estimate <project_name>"
+  opts.banner = "Usage: estimate <project_name> [options]"
 
   opts.on('-u', '--user STRING', 'Pivotal tracker username') { |user| options[:username] = user }
   opts.on('-p', '--pass STRING', 'Pivotal tracker password') { |pass| options[:password] = pass }
-  opts.on('-s', '--ssl', 'Use ssl') { options[:ssl] = true }
+  opts.on('-s', '--ssl', 'Use secure connection') { options[:ssl] = true }
 
-  opts.on('-d', '--developers INT', 'Number of developers (Defaulst to 2)') do |developers|
+  opts.on('-d', '--developers INT', 'Number of developers (default: 2)') do |developers|
     options[:developers] = developers
   end
 
-  opts.on('-x', '--day_points INT', 'Number of points allocated per day') do |day_options|
+  opts.on('-x', '--day_points INT', 'Points allocated to a day (default: 1)') do |day_options|
     options[:day_points] = day_points
   end
 
@@ -35,5 +35,10 @@ end
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'estimate'
-Estimate::TrackingSystem.authenticate! options[:username], options[:password], options[:ssl]
-puts Estimate::Project.new(project, options).process!
+begin
+  Estimate::TrackingSystem.authenticate! options[:username], options[:password], options[:ssl]
+  puts Estimate::Project.new(project, options).process!
+rescue Exception => e
+  puts "Something went wrong..."
+  puts e.message
+end
