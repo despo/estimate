@@ -9,7 +9,7 @@ def process_string name, incomplete_stories, end_date
   Project: #{name}
   Incomplete stories: #{incomplete_stories}
 
-  End date: #{end_date}
+  Estimated end date: #{end_date}
   """
 end
 

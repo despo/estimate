@@ -13,7 +13,7 @@ module Estimate
   Project: #{@name}
   Incomplete stories: #{incomplete_stories.length}
 
-  End date: #{end_date}
+  Estimated end date: #{end_date}
   """
     end
 
