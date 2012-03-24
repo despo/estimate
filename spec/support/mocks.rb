@@ -11,6 +11,8 @@ def process_string name, incomplete_stories, end_date
 
   And your project end date is.....
             #{end_date}
+
+  You have 48 days to complete this project.
   """
 end
 

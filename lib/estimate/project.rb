@@ -14,7 +14,9 @@ module Estimate
   Incomplete stories: #{incomplete_stories.length}
 
   And your project end date is.....
-            #{end_date}
+            #{display_end_date}
+
+  You have #{remaining_days} days to complete this project.
   """
     end
 
@@ -22,7 +24,7 @@ module Estimate
     WORK_WEEK_DAYS = 5
 
     def project
-      @project = @project or PivotalTracker::Project.all.select { |x| x.name.eql? @name }.first
+      @project = @project || PivotalTracker::Project.all.select { |x| x.name.eql? @name }.first
     end
 
     def points
@@ -30,11 +32,11 @@ module Estimate
     end
 
     def incomplete_stories
-      @stories = @stories or project.stories.all(:story_type => story_points.keys, :current_state => incomplete_stati)
+      @stories = @stories || project.stories.all(:story_type => story_points.keys, :current_state => incomplete_stati)
     end
 
     def remaining_weeks
-      (points/day_points+holidays*developers)/WORK_WEEK_DAYS/developers
+      @remaining_weeks = @remaining_weeks || (points/day_points+holidays*developers)/WORK_WEEK_DAYS/developers
     end
 
     def day_points
@@ -49,8 +51,16 @@ module Estimate
       5*developers
     end
 
+    def display_end_date
+      end_date.strftime('%A, %b %d %Y')
+    end
+
     def end_date
-      (DateTime.now + remaining_weeks*7).strftime('%A, %b %d %Y')
+      DateTime.now + remaining_weeks*7
+    end
+
+    def remaining_days
+      (end_date-DateTime.now).to_i
     end
 
     def story_points
