@@ -1,6 +1,6 @@
 # Estimate
 
-Do you have a manager that's been nugging you about an end date or a project estimate?
+Do you have a manager that's been nagging you about an end date or a project estimate?
 **Estimate** can solve your problem.
 
 ## Usage
