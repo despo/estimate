@@ -33,6 +33,7 @@ if !options[:username] or !options[:password]
   exit
 end
 
-require './lib/estimate'
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'estimate'
 Estimate::TrackingSystem.authenticate! options[:username], options[:password], options[:ssl]
 puts Estimate::Project.new(project, options).process!
