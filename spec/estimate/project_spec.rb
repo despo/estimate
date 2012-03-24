@@ -22,7 +22,7 @@ describe Estimate::Project do
     end
   end
 
-  it 'can estimate the project end date' do
+  it "can estimate the project's end date" do
     number_of_stories = 10
 
     project = Estimate::Project.new(:project_name)
