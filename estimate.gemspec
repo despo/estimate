@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.author      = "Despo Pentara"
   s.email       = "despo@extractmethod.com"
   s.homepage    = "https://github.com/despo/estimate"
-  s.summary     = "Estimate projects the easy way"
-  s.description = %{Have a manager that's been nugging you about an end date or a project estimate?}
+  s.summary     = "Estimate projects the easy way."
+  s.description = %{Have a manager that's been nugging you for a project estimate? Waste no time! Estimate your project now.}
   s.required_ruby_version = '>= 1.9.2'
 
   s.licenses = ["MIT"]
