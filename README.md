@@ -17,3 +17,5 @@ Usage: estimate <project_name> [options]
     -d, --developers INT             Number of developers (default: 2)
     -x, --day_points INT             Points allocated to a day (default: 1)
 ```
+
+[![Build Status](https://secure.travis-ci.org/despo/estimate.png)](http://travis-ci.org/despo/estimate)
