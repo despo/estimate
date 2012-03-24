@@ -28,7 +28,7 @@ describe Estimate::Project do
     project = Estimate::Project.new(:project_name)
     mock_incomplete_stories(project, number_of_stories)
 
-    end_date = (DateTime.now + 7*7).strftime('%d-%m-%Y')
+    end_date = (DateTime.now + 7*7).strftime('%A, %b %d %Y')
 
     project.process!.should eq process_string(:project_name, number_of_stories, end_date)
   end

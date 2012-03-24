@@ -13,7 +13,8 @@ module Estimate
   Project: #{@name}
   Incomplete stories: #{incomplete_stories.length}
 
-  Estimated end date: #{end_date}
+  And your project end date is.....
+            #{end_date}
   """
     end
 
@@ -49,7 +50,7 @@ module Estimate
     end
 
     def end_date
-      (DateTime.now + remaining_weeks*7).strftime('%d-%m-%Y')
+      (DateTime.now + remaining_weeks*7).strftime('%A, %b %d %Y')
     end
 
     def story_points
