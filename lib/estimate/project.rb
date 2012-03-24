@@ -22,6 +22,9 @@ module Estimate
 
     private
     WORK_WEEK_DAYS = 5
+    HOLIDAYS_PER_DEVELOPER = 5
+    DEFAULT_DAY_POINTS = 1
+    DEFAULT_DEVELOPERS = 2
 
     def incomplete_stories
       @stories = @stories || project.stories.all(:story_type => story_points.keys, :current_state => incomplete_stati)
@@ -59,15 +62,15 @@ module Estimate
     end
 
     def day_points
-      @properties[:day_points] || 1
+      @properties[:day_points] || DEFAULT_DAY_POINTS
     end
 
     def holidays
-      5*developers
+      HOLIDAYS_PER_DEVELOPER*developers
     end
 
     def developers
-      @properties[:developers] || 2
+      @properties[:developers] || DEFAULT_DEVELOPERS
     end
 
     def remaining_days
